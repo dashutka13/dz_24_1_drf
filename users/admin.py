@@ -9,5 +9,5 @@ class PaymentAdmin(admin.ModelAdmin):
 
 
 @admin.register(User)
-class PaymentAdmin(admin.ModelAdmin):
+class UserAdmin(admin.ModelAdmin):
     list_display = ('email', 'city', 'phone',)

@@ -19,3 +19,12 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
+
+
+# class UserNotOwnerSerializer(ModelSerializer):
+#     """
+#     Пыталась решить задание со * из 25_1 ничего не вышло
+#     """
+#     class Meta:
+#         model = User
+#         fields = "__all__"
