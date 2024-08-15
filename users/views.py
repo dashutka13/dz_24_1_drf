@@ -10,6 +10,7 @@ from users.serializers import UserSerializer, PaymentSerializer
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
+    serializer_class = UserSerializer
 
     # def get_serializer_class(self):
     #     """

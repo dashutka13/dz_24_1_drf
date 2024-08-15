@@ -21,7 +21,8 @@ class Course(models.Model):
         blank=True,
         null=True,
     )
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Владелец",
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True,
+                              verbose_name="Владелец",
                               help_text="Укажите владельца")
 
     class Meta:
@@ -63,9 +64,23 @@ class Lesson(models.Model):
         blank=True,
         null=True,
     )
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Владелец",
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True,
+                              verbose_name="Владелец",
                               help_text="Укажите владельца")
 
     class Meta:
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
+
+
+class Subscription(models.Model):
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Подписчик")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Курс", blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.course}: {self.user}'
+
+    class Meta:
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
