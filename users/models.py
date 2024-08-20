@@ -57,6 +57,10 @@ class Payment(models.Model):
     paid_lesson = models.ForeignKey(
         Lesson, on_delete=models.CASCADE, verbose_name="Оплаченный урок"
     )
+    id_session = models.CharField(max_length=255, verbose_name='Id сессии', blank=True,
+                                  null=True)
+    link_to_pay = models.URLField(max_length=400, verbose_name='Ссылка на оплату', blank=True,
+                                  null=True)
 
     class Meta:
         verbose_name = "Платеж"
