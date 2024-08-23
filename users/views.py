@@ -1,12 +1,13 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from users.models import User, Payment
-from users.serializers import UserSerializer, PaymentSerializer
-from users.services import stripe_create_product, stripe_create_price, stripe_create_session
+from users.models import Payment, User
+from users.serializers import PaymentSerializer, UserSerializer
+from users.services import (stripe_create_price, stripe_create_product,
+                            stripe_create_session)
 
 
 class UserViewSet(ModelViewSet):
@@ -38,8 +39,12 @@ class PaymentListAPIView(ListAPIView):
 
     filter_backends = [DjangoFilterBackend, OrderingFilter]
 
-    filterset_fields = ('payment_method', 'paid_course', 'paid_lesson',)
-    ordering_fields = ('date_of_payment',)
+    filterset_fields = (
+        "payment_method",
+        "paid_course",
+        "paid_lesson",
+    )
+    ordering_fields = ("date_of_payment",)
 
 
 class PaymentCreateAPIView(CreateAPIView):
